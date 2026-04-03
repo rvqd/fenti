@@ -5,9 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fenti</title>
 
-  <!-- OCR A Extended Font -->
-  <!-- Local OCR A Extended Font -->
-
   <style>
     @font-face {
       font-family: 'OCR A Extended';
@@ -19,7 +16,6 @@
       --accent: #ff4fd8;
       --accent-soft: rgba(255, 79, 216, 0.25);
     }
-
     * { box-sizing: border-box; }
 
     body {
@@ -32,7 +28,6 @@
       background: radial-gradient(1200px 800px at 20% 10%, #1a1a40 0%, #070716 40%, #000 100%);
     }
 
-    /* Improved natural starfield */
     body::before, body::after {
       content: "";
       position: absolute;
@@ -40,8 +35,6 @@
       background-repeat: repeat;
       z-index: 0;
     }
-
-    /* Small distant stars */
     body::before {
       background-image:
         radial-gradient(1px 1px at 10% 20%, #fff, transparent 60%),
@@ -53,8 +46,6 @@
       animation: driftSlow 160s linear infinite;
       opacity: 0.7;
     }
-
-    /* Bigger closer stars */
     body::after {
       background-image:
         radial-gradient(2px 2px at 20% 30%, #fff, transparent 60%),
@@ -69,12 +60,9 @@
       from { transform: translate3d(0,0,0); }
       to { transform: translate3d(-300px,-300px,0); }
     }
-
     @keyframes driftFast {
       from { transform: translate3d(0,0,0); }
       to { transform: translate3d(-600px,-600px,0); }
-    }
-      to { transform: translate3d(-500px,-500px,0); }
     }
 
     .nebula {
@@ -96,7 +84,6 @@
       padding: 20px;
     }
 
-    /* Improved readability for title */
     h1 {
       font-size: clamp(3rem, 6vw, 5rem);
       margin: 0 0 25px;
@@ -139,7 +126,6 @@
       position: relative;
       overflow: hidden;
     }
-
     .socials a::before {
       content: "";
       position: absolute;
@@ -148,13 +134,11 @@
       opacity: 0;
       transition: opacity 0.3s;
     }
-
     .socials a:hover {
       transform: translateY(-3px) scale(1.03);
       border-color: var(--accent);
       box-shadow: 0 0 10px var(--accent-soft);
     }
-
     .socials a:hover::before { opacity: 1; }
 
     footer {
@@ -175,11 +159,30 @@
     <div class="divider"></div>
 
     <div class="socials">
-      <a href="#">YouTube</a>
-      <a href="#">Discord</a>
+      <a data-social="youtube" href="#">YouTube</a>
+      <a data-social="discord" href="#">Discord</a>
     </div>
   </div>
 
   <footer>© Fenti</footer>
+
+  <script>
+    // 👇 Define your social links here
+    const socials = {
+      youtube: "https://www.youtube.com/yourchannel",
+      discord: "https://discord.gg/yourserver",
+      twitter: "https://twitter.com/yourhandle",
+      instagram: "https://instagram.com/yourhandle"
+    };
+
+    // Update all social links dynamically
+    document.querySelectorAll('.socials a').forEach(link => {
+      const key = link.dataset.social;
+      if (socials[key]) {
+        link.href = socials[key];
+        link.target = "_blank"; // open in new tab
+      }
+    });
+  </script>
 </body>
 </html>
